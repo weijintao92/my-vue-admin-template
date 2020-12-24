@@ -49,6 +49,8 @@ export default {
   },
   methods: {
     toggleSideBar() {
+      this.$store.commit('user/SET_AVATAR',
+        'https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png')
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {

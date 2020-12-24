@@ -31,11 +31,11 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
+  // {
+  //   path: '/login',
+  //   component: () => import('@/views/login/index'),
+  //   hidden: true
+  // },
 
   {
     path: '/404',
@@ -46,12 +46,24 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'home',
+      name: 'Home',
+      component: () => import('@/views/home/index'),
+      meta: { title: 'home', icon: 'home' }
+    }]
+  },
+
+  {
+    path: '/login2',
+    component: Layout,
+    redirect: '/login',
+    children: [{
+      path: 'login2',
+      name: 'login',
+      component: () => import('@/views/login/index'),
+      meta: { title: 'Login', icon: 'dashboard' }
     }]
   },
 
@@ -78,13 +90,13 @@ export const constantRoutes = [
   },
 
   {
-    path: '/form',
+    path: '/my_Vuex',
     component: Layout,
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
+        path: 'my_Vuex',
+        name: 'My_Vuex',
+        component: () => import('@/views/my_Vuex/index'),
         meta: { title: 'Form', icon: 'form' }
       }
     ]
