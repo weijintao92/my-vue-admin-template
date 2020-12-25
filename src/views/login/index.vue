@@ -49,14 +49,20 @@
       </div>
 
     </el-form>
+
+    <MyTabsTag />
   </div>
 </template>
 
 <script>
 import { validUsername } from '@/utils/validate'
+import MyTabsTag from '@/components/MyTabsTag'
 
 export default {
   name: 'Login',
+  components: {
+    MyTabsTag
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -98,6 +104,10 @@ export default {
       },
       immediate: true
     }
+  },
+  created: function() {
+    let temp
+    temp.load('./index.vue')
   },
   methods: {
     showPwd() {

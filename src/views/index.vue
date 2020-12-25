@@ -1,16 +1,15 @@
 <template>
   <div>
-    <h1>{{ name }}</h1>
+    <MyTabsTag />
   </div>
 </template>
 
 <script>
+import MyTabsTag from '@/components/MyTabsTag'
 export default {
   name: 'Index',
-  data() {
-    return {
-      name: '首页22'
-    }
+  components: {
+    MyTabsTag
   }
 }
 </script>

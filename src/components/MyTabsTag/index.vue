@@ -1,0 +1,27 @@
+<template>
+  <el-tabs type="border-card">
+    <el-tab-pane label="前端">{{ mHtml }}</el-tab-pane>
+    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+    <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+    <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+  </el-tabs>
+</template>
+
+<script>
+export default {
+  name: 'MyTabsTag',
+  props: {
+    mHtml: { type: String, default: 'html' }
+  },
+  data() {
+    return {
+      activeName: 'first'
+    }
+  },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event)
+    }
+  }
+}
+</script>
