@@ -106,8 +106,7 @@ export default {
     }
   },
   created: function() {
-    let temp
-    temp.load('./index.vue')
+
   },
   methods: {
     showPwd() {
