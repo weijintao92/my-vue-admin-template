@@ -9,7 +9,7 @@ export default {
   name: 'Index',
   data() {
     return {
-      name: '首页'
+      name: '首页22'
     }
   }
 }

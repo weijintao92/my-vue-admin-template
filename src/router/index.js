@@ -46,12 +46,12 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/home',
+    redirect: '/index',
     children: [{
-      path: 'home',
-      name: 'Home',
-      component: () => import('@/views/home/index'),
-      meta: { title: 'home', icon: 'home' }
+      path: 'index',
+      name: 'Index',
+      component: () => import('@/views/index'),
+      meta: { title: 'Index', icon: 'home' }
     }]
   },
 
@@ -63,7 +63,7 @@ export const constantRoutes = [
       path: 'login2',
       name: 'login',
       component: () => import('@/views/login/index'),
-      meta: { title: 'Login', icon: 'dashboard' }
+      meta: { title: 'Login', icon: 'Login' }
     }]
   },
 

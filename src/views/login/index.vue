@@ -66,11 +66,13 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
-        callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
-      }
+      // if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
+      //   callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
+      // }
       if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'))
+      } else if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
+        callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
       } else {
         callback()
       }
