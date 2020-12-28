@@ -1,6 +1,7 @@
-
+<docs>
+登录页面
+</docs>
 <template>
-
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
@@ -49,27 +50,15 @@
         <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span>
       </div>
-
     </el-form>
-
-    <MyTabsTag />
-    <yWwd />
-
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
-import MyTabsTag from '@/components/MyTabsTag'
-
-import yWwd from './ywwd.md'
+import { validUsername, validPwd } from '@/utils/validate'
 
 export default {
-  name: 'Login',
-  components: {
-    MyTabsTag,
-    yWwd
-  },
+  name: 'Show',
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -79,10 +68,11 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      // if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
-      //   callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
-      // }
-
+      if (validPwd(value)) {
+        callback(new Error(validPwd(value)))
+      } else {
+        callback()
+      }
     }
     return {
       myMsg: '',

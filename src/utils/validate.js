@@ -20,6 +20,21 @@ export function validUsername(str) {
 }
 
 /**
+ * @param {string} str
+ * @returns {Boolean}
+ * @description 验证密码长度
+ */
+export function validPwd(str) {
+  if (str.length < 6) {
+    return 'The password can not be less than 6 digits'
+  }
+  if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(str)) {
+    return '密码强度太低，需包含大小写、数字、特殊符号！'
+  }
+  return false
+}
+
+/**
  * @param {string} url
  * @returns {Boolean}
  */
