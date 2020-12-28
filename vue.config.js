@@ -46,9 +46,27 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
+    }, module: {
+      rules: [
+        {
+          resourceQuery: /blockType=docs/,
+          loader: require.resolve('./docs-loader.js')
+        }
+      ]
     }
   },
   chainWebpack(config) {
+    config.module.rule('md')
+      .test(/\.md/)
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-markdown-loader')
+      .loader('vue-markdown-loader/lib/markdown-compiler')
+      .options({
+        raw: true
+      })
+
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
       {
@@ -120,4 +138,5 @@ module.exports = {
         }
       )
   }
+
 }
