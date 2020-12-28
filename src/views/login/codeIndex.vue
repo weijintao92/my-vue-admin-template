@@ -22,3 +22,11 @@ export default {
 }
 </script>
 
+<style scoped>
+#CodeLogin{
+  position: relative;
+  height: 100%;
+  overflow:scroll;
+}
+</style>
+

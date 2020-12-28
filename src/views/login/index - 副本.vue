@@ -1,7 +1,7 @@
 
 <template>
 
-  <!-- <div class="login-container">
+  <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
@@ -55,7 +55,7 @@
     <MyTabsTag />
     <yWwd />
 
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -82,13 +82,7 @@ export default {
       // if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
       //   callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
       // }
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else if (!/(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@?/#$%^&*()_.+~].*)/.test(value)) {
-        callback(new Error('密码强度太低，需包含大小写、数字、特殊符号！'))
-      } else {
-        callback()
-      }
+
     }
     return {
       myMsg: '',
