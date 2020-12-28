@@ -56,20 +56,27 @@ export const constantRoutes = [
   },
 
   {
-    path: '/login2',
+    path: '/loginHome',
     component: Layout,
-    redirect: '/login',
-    meta: { title: 'Login', icon: 'Login' },
+    name: 'LoginHome',
+    redirect: '/loginHome/login',
+    meta: { title: 'LoginHome', icon: 'Login' },
     children: [{
-      path: 'login2',
+      path: 'login',
       name: 'login',
-      component: () => import('@/views/login/index'),
-      meta: { title: 'Login', icon: 'Login' }
-    }, {
-      path: 'codeIndex',
-      name: 'CodeLogin',
-      component: () => import('@/views/login/codeIndex'),
-      meta: { title: 'CodeLogin', icon: 'Login' }
+      component: () => import('@/views/loginHome/login/index'), // Parent router-view
+      meta: { title: 'Login' },
+      children: [{
+        path: '/show',
+        name: 'Show',
+        component: () => import('@/views/loginHome/login/show/index'),
+        meta: { title: 'Show' }
+      }, {
+        path: '/code',
+        name: 'Code',
+        component: () => import('@/views/loginHome/login/code/index'),
+        meta: { title: 'Code' }
+      }]
     }]
   },
 
