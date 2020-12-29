@@ -40,6 +40,9 @@ export default {
 
     }
   },
+  mounted() {
+    console.log(this.$store.state.screen.screenWidth)
+  },
   methods: {
     /**
      * 复制代码
@@ -84,7 +87,7 @@ pre {
 
 .card_div {
   position: relative;
-  height: 500px;
+  height: 380px;
   width: 700px;
   overflow: scroll;
 }

@@ -56,6 +56,25 @@ export const constantRoutes = [
   },
 
   {
+    path: '/otherPlugin',
+    component: Layout,
+    name: 'OtherPlugin',
+    redirect: '/otherPlugin/',
+    meta: { title: '第三方插件', icon: 'Login' },
+    children: [{
+      path: 'clipboard',
+      name: 'Clipboard',
+      component: () => import('@/views/otherPlugin/clipboard/clipboard'), // Parent router-view
+      meta: { title: 'Clipboard' }
+    }, {
+      path: 'test',
+      name: 'Test',
+      component: () => import('@/views/otherPlugin/test/test'), // Parent router-view
+      meta: { title: 'Test' }
+    }]
+  },
+
+  {
     path: '/loginHome',
     component: Layout,
     name: 'LoginHome',
@@ -77,6 +96,11 @@ export const constantRoutes = [
         component: () => import('@/views/loginHome/login/code/index'),
         meta: { title: 'Code' }
       }]
+    }, {
+      path: 'login-2',
+      name: 'Login-2',
+      component: () => import('@/views/loginHome/login-2/index'), // Parent router-view
+      meta: { title: 'Login-2' }
     }]
   },
 

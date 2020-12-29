@@ -21,23 +21,15 @@
 </template>
 
 <script>
+import Demo from '@/views/loginHome/login/show/index'
 import Clipboard from 'clipboard'
 
 export default {
   name: 'Code',
-  props: {
-    sourceCodeTitle: {
-      type: String,
-      default: ''
-    },
-    sourceCode: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
-
+      sourceCodeTitle: Demo.__sourceCodeTitle,
+      sourceCode: Demo.__sourceCode
     }
   },
   methods: {

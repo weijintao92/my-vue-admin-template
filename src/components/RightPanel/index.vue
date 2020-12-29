@@ -80,7 +80,7 @@ export default {
 .showRightPanel {
   overflow: hidden;
   position: relative;
-  width: calc(100% - 15px);
+  width: calc(100%);
 }
 </style>
 
@@ -92,7 +92,7 @@ export default {
   opacity: 0;
   transition: opacity .3s cubic-bezier(.7, .3, .1, 1);
   background: rgba(0, 0, 0, .2);
-  z-index: -1;
+  z-index: 999;
 }
 
 .rightPanel {
