@@ -40,9 +40,6 @@ export default {
 
     }
   },
-  mounted() {
-    console.log(this.$store.state.screen.screenWidth)
-  },
   methods: {
     /**
      * 复制代码

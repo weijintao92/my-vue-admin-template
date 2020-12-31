@@ -1,4 +1,11 @@
-const fs = require('fs')
+
+// 通过 vue-loader 自定义块 功能，获取目标文件的文件路径，然后通过 fs 读取源码，
+// 再用 @vue/compiler-core 的 API baseParse将读取到的内容转换成 AST 语法抽象树，
+// 然后将 fs 读取的内容中 抽离出 自定义块内容 和 需要的源码，
+// 最后再将以上两个内容重新挂到组件对象上，直接读取组件相应的字段就可以。
+// const fs = require('fs')
+// 参考博客：https://blog.csdn.net/qq_40411946/article/details/111027534
+// Vue Loader官方说明：https://vue-loader.vuejs.org/zh/guide/custom-blocks.html
 const { baseParse } = require('@vue/compiler-core')
 
 module.exports = function(source, map) {
