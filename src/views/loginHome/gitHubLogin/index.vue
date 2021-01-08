@@ -23,7 +23,7 @@
   <!-- 56aa7da20ef8fb37fe33989ea0477d89a275ad09  -->
 </template>
 <script>
-import axios from 'axios'
+import service from '@/utils/request'
 import qs from 'qs'
 export default {
   name: 'GitHubLogin',
@@ -42,7 +42,7 @@ export default {
       this.getGitHubToken()
     }
 
-    axios.interceptors.response.use(function(response) {
+    service.interceptors.response.use(function(response) {
     // 对响应数据做点什么
       return response
     }, function(error) {
@@ -65,9 +65,9 @@ export default {
      */
     getGitHubToken() {
       // 使用vue代理
-      axios({
+      service({
         method: 'post',
-        url: 'http://127.0.0.1:8000/Vueget_gitHub_accessToken/',
+        url: '/Vueget_gitHub_accessToken/',
         data: qs.stringify({
           client_id: this.client_id,
           client_secret: this.client_secret,
@@ -85,7 +85,7 @@ export default {
      */
     getGitHubUser(token) {
       // 使用vue代理
-      axios({
+      service({
         method: 'get',
         url: 'https://api.github.com/user',
         headers: {
