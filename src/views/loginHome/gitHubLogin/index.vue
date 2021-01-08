@@ -24,6 +24,7 @@
 </template>
 <script>
 import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'GitHubLogin',
   data() {
@@ -40,6 +41,14 @@ export default {
       // console.log(this.getQueryString('code'))
       this.getGitHubToken()
     }
+
+    axios.interceptors.response.use(function(response) {
+    // 对响应数据做点什么
+      return response
+    }, function(error) {
+    // 对响应错误做点什么
+      return Promise.reject(error)
+    })
   },
   methods: {
     /**
@@ -58,11 +67,30 @@ export default {
       // 使用vue代理
       axios({
         method: 'post',
-        url: '/gitHubAccess',
-        params: {
+        url: 'http://127.0.0.1:8000/Vueget_gitHub_accessToken/',
+        data: qs.stringify({
           client_id: this.client_id,
           client_secret: this.client_secret,
-          code: this.gitHubCode }
+          code: this.gitHubCode })
+      }).then(re => {
+        if (re.status !== 200) {
+          return console.log(re)
+        }
+        console.log(re)
+      }).catch(error => {
+        console.log(error)
+      })
+    }, /**
+     * @description 获取gitHub的Token
+     */
+    getGitHubUser(token) {
+      // 使用vue代理
+      axios({
+        method: 'get',
+        url: 'https://api.github.com/user',
+        headers: {
+          'Authorization': 'Bearer ' + token + ''
+        }
       }).then(re => {
         console.log(re)
       }).catch(error => {
