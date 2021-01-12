@@ -23,7 +23,7 @@
   <!-- 56aa7da20ef8fb37fe33989ea0477d89a275ad09  -->
 </template>
 <script>
-import service from '@/utils/request'
+import request from '@/utils/request'
 import qs from 'qs'
 export default {
   name: 'GitHubLogin',
@@ -41,14 +41,6 @@ export default {
       // console.log(this.getQueryString('code'))
       this.getGitHubToken()
     }
-
-    service.interceptors.response.use(function(response) {
-    // 对响应数据做点什么
-      return response
-    }, function(error) {
-    // 对响应错误做点什么
-      return Promise.reject(error)
-    })
   },
   methods: {
     /**
@@ -65,27 +57,29 @@ export default {
      */
     getGitHubToken() {
       // 使用vue代理
-      service({
+      request({
         method: 'post',
-        url: '/Vueget_gitHub_accessToken/',
+        // url: '/Vueget_gitHub_accessToken/',
+        url: '/gitHubAccess/',
         data: qs.stringify({
           client_id: this.client_id,
           client_secret: this.client_secret,
           code: this.gitHubCode })
-      }).then(re => {
-        if (re.status !== 200) {
-          return console.log(re)
+      }).then(response => {
+        // eslint-disable-next-line eqeqeq
+        if (response.status != 200) {
+          return console.log(response.data)
         }
-        console.log(re)
+        // this.getGitHubUser(response.data)
       }).catch(error => {
-        console.log(error)
+        console.log('getGitHubToken---' + error)
       })
     }, /**
-     * @description 获取gitHub的Token
+     * @description 获取gitHub的用户信息
      */
     getGitHubUser(token) {
       // 使用vue代理
-      service({
+      request({
         method: 'get',
         url: 'https://api.github.com/user',
         headers: {
@@ -94,7 +88,7 @@ export default {
       }).then(re => {
         console.log(re)
       }).catch(error => {
-        console.log(error)
+        console.log('getGitHubUser--' + error)
       })
     }
   }
