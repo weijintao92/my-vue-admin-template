@@ -25,6 +25,7 @@
 <script>
 import request from '@/utils/request'
 import qs from 'qs'
+// import axios from 'axios'
 export default {
   name: 'GitHubLogin',
   data() {
@@ -59,8 +60,8 @@ export default {
       // 使用vue代理
       request({
         method: 'post',
-        // url: '/Vueget_gitHub_accessToken/',
-        url: '/gitHubAccess/',
+        url: '/Vueget_gitHub_accessToken/',
+        // url: '/gitHubAccess',
         data: qs.stringify({
           client_id: this.client_id,
           client_secret: this.client_secret,
@@ -70,7 +71,7 @@ export default {
         if (response.status != 200) {
           return console.log(response.data)
         }
-        // this.getGitHubUser(response.data)
+        this.getGitHubUser(response.data)
       }).catch(error => {
         console.log('getGitHubToken---' + error)
       })
