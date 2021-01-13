@@ -32,12 +32,13 @@ module.exports = {
   devServer: {
     port: port,
     proxy: {
-      '/gitHubAccess': {
+      '/rng': {
         target: 'https://github.com/login/oauth/access_token',
         ws: true,
+        secure: false,
         changeOrigin: true,
         pathRewrite: {
-          '^/gitHubAccess': ''
+          '^/rng': ''
         }
       }
     },
@@ -46,7 +47,6 @@ module.exports = {
       warnings: true,
       errors: true
     },
-
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {

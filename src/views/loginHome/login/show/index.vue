@@ -64,14 +64,19 @@
         <span> password: any</span>
       </div>
     </el-form>
+    <GitHubLogin />
   </div>
 </template>
 
 <script>
+import GitHubLogin from '@/views/loginHome/gitHubLogin/index'
 import { validUsername, validPwd } from '@/utils/validate'
 
 export default {
   name: 'Show',
+  components: {
+    GitHubLogin
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -121,6 +126,7 @@ export default {
     return false
   },
   methods: {
+
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''

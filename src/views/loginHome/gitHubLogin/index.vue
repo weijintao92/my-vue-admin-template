@@ -1,8 +1,6 @@
 <template>
   <div>
-    <a
-      :href="my_url"
-    >
+    <a :href="my_url">
       <svg
         height="32"
         viewBox="0 0 16 16"
@@ -23,11 +21,17 @@
   <!-- 56aa7da20ef8fb37fe33989ea0477d89a275ad09  -->
 </template>
 <script>
-import request from '@/utils/request'
+import request from '@/utils/myRequest'
 import qs from 'qs'
 // import axios from 'axios'
 export default {
   name: 'GitHubLogin',
+  props: {
+    myRouter: {
+      type: String,
+      default: '/'
+    }
+  },
   data() {
     return {
       gitHubCode: '',
@@ -36,10 +40,14 @@ export default {
       client_secret: process.env.VUE_APP_Client_Secret
     }
   },
-  created() {
+  mounted() {
     this.gitHubCode = this.getQueryString('code')
     if (this.gitHubCode) {
-      // console.log(this.getQueryString('code'))
+      console.log(this.$router)
+      // eslint-disable-next-line eqeqeq
+      if (process.env.NODE_ENV != 'production') {
+        return this.getProxyGitHubToken()
+      }
       this.getGitHubToken()
     }
   },
@@ -60,8 +68,7 @@ export default {
       // 使用vue代理
       request({
         method: 'post',
-        url: '/Vueget_gitHub_accessToken/',
-        // url: '/gitHubAccess',
+        url: '/Vueget_gitHub_accessToken',
         data: qs.stringify({
           client_id: this.client_id,
           client_secret: this.client_secret,
@@ -69,13 +76,42 @@ export default {
       }).then(response => {
         // eslint-disable-next-line eqeqeq
         if (response.status != 200) {
+          this.$message.error(response.data)
           return console.log(response.data)
         }
         this.getGitHubUser(response.data)
       }).catch(error => {
         console.log('getGitHubToken---' + error)
       })
-    }, /**
+    },
+    /**
+     * @description 获取gitHub的Token,使用本地代理
+     */
+    getProxyGitHubToken() {
+      // 使用vue代理
+      request({
+        method: 'post',
+        url: '/rng',
+        params: {
+          client_id: this.client_id,
+          client_secret: this.client_secret,
+          code: this.gitHubCode }
+      }).then(response => {
+        if (response.status !== 200) {
+          return console.log(response)
+        }
+        const listTemp = response.data.split('&')
+        const access_tokent = listTemp[0].split('=')[1]
+        if (access_tokent === 'bad_verification_code') {
+          this.$message.error('code已失效！')
+          history.pushState(null, '', '/')
+        }
+        this.getGitHubUser(access_tokent)
+      }).catch(error => {
+        console.log('getGitHubToken---' + error)
+      })
+    },
+    /**
      * @description 获取gitHub的用户信息
      */
     getGitHubUser(token) {
@@ -87,7 +123,8 @@ export default {
           'Authorization': 'Bearer ' + token + ''
         }
       }).then(re => {
-        console.log(re)
+        history.pushState(null, '', '/')
+        this.$router.replace('/')
       }).catch(error => {
         console.log('getGitHubUser--' + error)
       })

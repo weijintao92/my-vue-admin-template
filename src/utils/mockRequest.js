@@ -5,12 +5,12 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: process.env.VUE_APP_MOCK_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
 
-// 添加请求拦截器
+// request interceptor
 service.interceptors.request.use(
   config => {
     // do something before request is sent
@@ -30,7 +30,7 @@ service.interceptors.request.use(
   }
 )
 
-// 添加响应拦截器
+// response interceptor
 service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status

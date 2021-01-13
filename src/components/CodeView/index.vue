@@ -75,7 +75,6 @@ export default {
 <style scoped>
 .hljs {
   overflow-x: visible;
-  width: 681px;
 }
 
 pre {
@@ -84,12 +83,12 @@ pre {
 
 .card_div {
   position: relative;
-  height: 380px;
-  width: 700px;
   overflow: scroll;
+  max-height: calc(50vh - 115px);
+
 }
-#CodeLogin {
-  width: 700px;
+.el-card {
+    border: 1px solid;
 }
 </style>
 

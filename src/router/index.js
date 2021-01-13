@@ -97,11 +97,6 @@ export const constantRoutes = [
         meta: { title: 'Code' }
       }]
     }, {
-      path: 'login-2',
-      name: 'Login-2',
-      component: () => import('@/views/loginHome/login-2/index'), // Parent router-view
-      meta: { title: 'Login-2' }
-    }, {
       path: 'githubLogin',
       name: 'GithubLogin',
       component: () => import('@/views/loginHome/gitHubLogin/index'), // Parent router-view
