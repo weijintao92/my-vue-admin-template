@@ -31,12 +31,6 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/index'),
-  //   hidden: true
-  // },
-
   {
     path: '/404',
     component: () => import('@/views/404'),
@@ -75,25 +69,25 @@ export const constantRoutes = [
   },
 
   {
-    path: '/loginHome',
+    path: '/login',
     component: Layout,
     name: 'LoginHome',
-    redirect: '/loginHome/login',
+    // redirect: '/loginHome/login',
     meta: { title: 'LoginHome', icon: 'Login' },
     children: [{
-      path: 'login',
-      name: 'login',
-      component: () => import('@/views/loginHome/login/index'), // Parent router-view
-      meta: { title: 'Login' },
+      path: '/particles',
+      name: 'Particles',
+      component: () => import('@/views/loginHome/particles/index'), // Parent router-view
+      meta: { title: 'particles' },
       children: [{
         path: '/show',
         name: 'Show',
-        component: () => import('@/views/loginHome/login/show/index'),
+        component: () => import('@/views/loginHome/particles/show/index'),
         meta: { title: 'Show' }
       }, {
         path: '/code',
         name: 'Code',
-        component: () => import('@/views/loginHome/login/code/index'),
+        component: () => import('@/views/loginHome/particles/code/index'),
         meta: { title: 'Code' }
       }]
     }, {

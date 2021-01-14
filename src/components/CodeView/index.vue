@@ -84,7 +84,7 @@ pre {
 .card_div {
   position: relative;
   overflow: scroll;
-  max-height: calc(50vh - 115px);
+  max-height: calc(100vh - 200px);
 
 }
 .el-card {

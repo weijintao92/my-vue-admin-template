@@ -18,8 +18,8 @@
   </div>
 </template>
 <script>
-import MyShow from '@/views/loginHome/login/show/index'
-import Demo from '@/views/loginHome/login/show/index'
+import MyShow from '@/views/loginHome/particles/show/index'
+import Demo from '@/views/loginHome/particles/show/index'
 import CodeView from '@/components/CodeView'
 export default {
   name: 'LoingHome2',

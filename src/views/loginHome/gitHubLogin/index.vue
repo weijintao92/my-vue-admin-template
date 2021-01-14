@@ -26,12 +26,6 @@ import qs from 'qs'
 // import axios from 'axios'
 export default {
   name: 'GitHubLogin',
-  props: {
-    myRouter: {
-      type: String,
-      default: '/'
-    }
-  },
   data() {
     return {
       gitHubCode: '',
@@ -43,7 +37,6 @@ export default {
   mounted() {
     this.gitHubCode = this.getQueryString('code')
     if (this.gitHubCode) {
-      console.log(this.$router)
       // eslint-disable-next-line eqeqeq
       if (process.env.NODE_ENV != 'production') {
         return this.getProxyGitHubToken()
@@ -76,8 +69,7 @@ export default {
       }).then(response => {
         // eslint-disable-next-line eqeqeq
         if (response.status != 200) {
-          this.$message.error(response.data)
-          return console.log(response.data)
+          return this.$message.error(response.data)
         }
         this.getGitHubUser(response.data)
       }).catch(error => {
@@ -125,6 +117,7 @@ export default {
       }).then(re => {
         history.pushState(null, '', '/')
         this.$router.replace('/')
+        console.log(re)
       }).catch(error => {
         console.log('getGitHubUser--' + error)
       })

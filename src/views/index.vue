@@ -1,15 +1,12 @@
 <template>
   <div>
-    <MyTabsTag />
+    <span>首页</span>
   </div>
 </template>
 
 <script>
-import MyTabsTag from '@/components/MyTabsTag'
 export default {
-  name: 'Index',
-  components: {
-    MyTabsTag
-  }
+  name: 'Index'
+
 }
 </script>

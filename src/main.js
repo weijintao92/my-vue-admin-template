@@ -18,6 +18,9 @@ import VueHighlightJS from 'vue-highlightjs'
 import 'highlight.js/styles/atom-one-dark.css'
 Vue.use(VueHighlightJS)
 
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+
 // 登录的权限控制
 // import '@/permission' // permission control
 
