@@ -91,10 +91,15 @@ export const constantRoutes = [
         meta: { title: 'Code' }
       }]
     }, {
-      path: 'githubLogin',
+      path: '/githubLogin',
       name: 'GithubLogin',
       component: () => import('@/views/loginHome/gitHubLogin/index'), // Parent router-view
       meta: { title: 'GithubLogin' }
+    }, {
+      path: '/verifyCode',
+      name: 'VerifyCode',
+      component: () => import('@/views/loginHome/verifyCode/index'), // Parent router-view
+      meta: { title: 'VerifyCode' }
     }]
   },
 
