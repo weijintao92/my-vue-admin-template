@@ -3,24 +3,21 @@
     <!-- 验证码 -->
     <el-form ref="VerifyCodeForm" :model="VerifyCodeForm" :rules="rules">
       <el-form-item prop="verifyCode">
-        <el-col :span="3">
+        <div class="div_verify">
           <el-input
             id="verifyCode"
             v-model="VerifyCodeForm.verifyCode"
             class="verifyCode"
             prefix-icon="iconfont icon-renzheng"
             placeholder="请输入验证码"
-            style="width:150px"
+            style="width: 150px"
             size="mini"
             :validate-event="false"
             @blur="clearValidate('VerifyCodeForm')"
             @focus="focus($event)"
-
             @keydown.native.enter="submitForm('VerifyCodeForm')"
           />
-        </el-col>
 
-        <el-col :span="1">
           <div @click="createCode">
             <input
               id="checkNode"
@@ -29,16 +26,14 @@
               disabled="disabled"
             >
           </div>
-        </el-col>
+        </div>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-
 export default {
-
   data() {
     var verifyCode = (rule, value, callback) => {
       if (value.toUpperCase() === this.code.toUpperCase()) {
@@ -48,15 +43,13 @@ export default {
       }
     }
     return {
-      VerifyCodeForm:
-      {
+      VerifyCodeForm: {
         verifyCode: ''
       },
       code: '',
       rules: {
         verifyCode: [{ validator: verifyCode }]
       }
-
     }
   },
   mounted() {
@@ -152,7 +145,7 @@ export default {
       )
       for (let i = 0; i < codeLength; i++) {
         const charIndex = Math.floor(Math.random() * 61)
-        this.code += selectChar[ charIndex ]
+        this.code += selectChar[charIndex]
       }
       if (this.code.length !== codeLength) {
         this.createCode()
@@ -163,7 +156,7 @@ export default {
     validate(formName) {
       const inputCode = this.VerifyCodeForm.verifyCode.toUpperCase()
       const codeToUp = this.code.toUpperCase()
-      this.$refs[ formName ].verifyCode((verifyCode) => {
+      this.$refs[formName].verifyCode((verifyCode) => {
         console.log(22222222)
         if (verifyCode) {
           if (inputCode !== codeToUp) {
@@ -187,23 +180,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .el-form {
-
-      .code {
-        margin: 0 5px;
-        background:#ffffff;
-        font-family: Arial,serif;
-        font-style: italic;
-        color: black;
-        border: 0;
-        padding: 2px 3px;
-        letter-spacing: 3px;
-        font-weight: bolder;
-        text-align: center;
-        width:55px;
-        height:26px
-      }
-
-    }
+.div_verify {
+  display: flex;
+  width: 215px;
+}
+.el-form {
+  .code {
+    margin: 0 5px;
+    background: #ffffff;
+    font-family: Arial, serif;
+    font-style: italic;
+    color: black;
+    border: 0;
+    padding: 2px 3px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    text-align: center;
+    width: 55px;
+    height: 26px;
+  }
+}
 </style>
 
